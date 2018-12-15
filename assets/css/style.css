@@ -1,0 +1,27 @@
+/*background image not working*/
+
+body {
+ background-image: url("https://raw.githubusercontent.com/reubenwalker64/unit-4-game/master/assets/images/background-web.jpg");
+ background-size: cover;
+}
+
+h1 {
+	color: #333fff;
+	font-family: serif;
+	font-size: 54px;
+	margin-left: 10px;
+	margin-top: 30px;
+	text-align: center;
+}
+
+hr {
+	border-top: 5px solid red;
+}
+
+p {
+	padding: 10px;
+	font-family: sans-serif;
+	color: #07b814;
+	font-size: 24px;
+
+}
