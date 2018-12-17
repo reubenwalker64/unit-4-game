@@ -1,7 +1,7 @@
-/*background image not working*/
+
 
 body {
- background-image: url("https://raw.githubusercontent.com/reubenwalker64/unit-4-game/master/assets/images/background-web.jpg");
+ background-image: url("https://raw.githubusercontent.com/reubenwalker64/unit-4-game/master/assets/images/background-web2.jpg");
  background-size: cover;
 }
 
@@ -20,8 +20,17 @@ hr {
 
 p {
 	padding: 10px;
+  margin-left: 20px;
 	font-family: sans-serif;
 	color: #07b814;
-	font-size: 24px;
+	font-size: 22px;
 
+}
+
+.col-lg-1 {
+  margin-right: 30px;
+}
+
+.credit {
+	font-size: 12px;
 }
