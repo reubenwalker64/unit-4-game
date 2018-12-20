@@ -1,14 +1,4 @@
 /*
-function name(params) {
-    
-}
-
-//function above or func below is jQuery
-
-function (param) {  }
-*/
-
-/*
 Here's how the app works:
 
 There will be four crystals displayed as buttons on the page.
@@ -39,12 +29,15 @@ Each crystal should have a random hidden value between 1 - 12.
 $(document).ready(function(){
 
 // Array of Number Options (19-120). FINISH BELOW IF CORRECT
-var number = [19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39,40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 53, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120];
-var number = Math.floor(Math.Rand*121)+19
+// var number = [19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39,40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 53, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120];
+var number = Math.floor(Math.random() * 121)+19;
 
 // Computer selected number options (19-120) will be held here. VARIABLE CAPTAIN PLANET EX. ???
 
 var computerNumber = "";
+
+// We print the solution in console (for testing).
+console.log(computerNumber);
 
 // Array of Values for individual beer vessels: 10,5,2,1
 
@@ -53,15 +46,15 @@ var mug = 5;
 var chalice = 2;
 var flute = 1;
 
+var vesselsTotal = "pint" + "mug" + "chalice" + "flute";
+
 // Holds the total of numbers user selects by clicking beer vessels. Adds pint, mug, chalice, flute click events.
-// substitue class used for crystal below. ??? all together or one for each
+// ??? all together or one for each
 var sum = 0
     $(".pint .mug .chalice .flute").on('click',function (){
-        var crystalVal = this.attr("value");
-        sum +=parseInt(crystalVal);
+        var vesselsTotal = this.attr("value");
+        sum +=parseInt(vesselsTotal);
     })
-
-// ???var vesselTotal = "";
 
 // Game counters for Wins and Losses
 
@@ -72,47 +65,143 @@ var lossCounter = 0;
 // It's how we we will start and restart the game.
 // (Note: It's not being run here. Function declarations like this are made for future use.)
 
-$(function(){
+$(function(startGame){
 
     // jQuery methods go here... MODIFY THOSE FROM CALCULATOR ACTIVITY???
-  
+    function initializecomputerNumber() {
+        
+    }  
+
+    function initializevesselTotal() {
+        pint = "";
+        mug = "";
+        chalice = "";
+        flute = "";
+
+        $("#pint, #mug, #chalice, #flute").empty();
+      }
+
+
   });
-
-// Reset Computer selected number (19-120)
-
-// ??? initializecomputerNumber();
-
-// Reset the total of numbers user selects by clicking beer vessels
-
-// ??? initializevesselTotal();
-
-// Computer selected number chosen randomly from (19-120).
-
-// We print the solution in console (for testing).
-console.log(chosen???);
-
-//CRITICAL LINE
-  // ??? Here we *reset* the guess and success array at each round. Works with above.
- 
-
-
-// checkNumbers() function  ??? NECESSARY ???
-// It's where we will do all of the comparisons for matches.
-// Again, it's not being called here. It's just being made for future use.  
-
+// End of start game code on line above. Incorporate a #score???
 
 
 // roundComplete() function
-// Here we will have all of the code that needs to be run after a vessel selection is made.
+// Here we will have all of the code that needs to be run after a vessel selections are made.
 
+// Add vessel values addition code with if else statements??? EDIT CODE BELOW. DO NOT UNDERSTAND THIS WELL.
+
+$(".number").on("click", function() {
+
+    // Check if we've already run a calculation, if so... we'll just.
+    if (isCalculated) {
+      return false;
+    }
+
+    // If operator is chosen, we should be writing the secondNumber, otherwise, the firstNumber
+    //SHOULD SAY IF PINT CHOSEN ADD 10 TO VESSELS TOTAL and SUB IN PINT MUG CHALICE FLUTE FOR 1ST AND 2ND NUMBER ETC
+    if (isOperatorChosen) {
+      secondNumber += $(this).val();
+      $("#second-number").text(secondNumber);
+
+    }
+
+    //ADDITONAL IF STATEMENTS FOR MUG, CHALICE, AND FLUTE ???
+    else {
+      firstNumber += $(this).val();
+      $("#first-number").text(firstNumber);
+    }
+
+  });
+
+//EDIT CODE BELOW ESPECIALLY OPERATOR (SHOULD ONLY BE ADDITION)
+
+  $(".operator").on("click", function() {
+
+    // Check if a first number has already been selected
+    // Or we've already run a calculation, if so we just exit.
+    if (!firstNumber || isCalculated) {
+      return false;
+    }
+
+    // Set isOperatorChosen to true so we start writing to secondNumber
+    isOperatorChosen = true;
+
+    // Store off the operator
+    operator = $(this).val();
+
+    // Set the HTML of the #operator to the text of what was clicked
+    $("#operator").text($(this).text());
+
+  });
+  $(".equal").on("click", function() {
+
+    // If we already clicked equal, don't do the calculation again
+    if (isCalculated) {
+      return false;
+    }
+
+    // Set isCalculated to true so that we don't get in a weird UI state by clicking buttons again
+    isCalculated = true;
+
+    /* Use parseInt to convert our string representation of numbers into actual integers
+    firstNumber = parseInt(firstNumber);
+    secondNumber = parseInt(secondNumber);
+    NECESSARY??? */
+
+    // Based on the operator that was chosen.
+    // Then run the operation and set the HTML of the result of that operation
+    if (operator === "plus") {
+      score = pint + mug + chalice + flute;
+    }
+
+   
+    else if (operator === "power") {
+      score = Math.pow(pint, mug, chalice, flute);
+    }
+
+    $("#score").text(score);
+
+  });
+  $(".clear").on("click", function() {
+
+    // Call initializeCalculater so we can reset the state of our app
+
+    /*
+$(function(startGame){
+
+
+    function initializecomputerNumber() {
+        
+    }  
+
+    function initializevesselTotal() {
+        pint = "";
+        mug = "";
+        chalice = "";
+        flute = "";
+
+        $("#pint, #mug, #chalice, #flute").empty();
+      }
+
+
+  });
+    */
+
+  });
+
+
+});
 
 
 // HTML UPDATES
   // ============
 
+// Print the computer number to the page
+
 
 // This will print the array of total of vessel selection values onto the page. 
-// How will it add them?
+
 
 
 
@@ -153,27 +242,7 @@ console.log(chosen???);
         // Restart the game
 
 
-// MAIN PROCESS (THIS IS THE CODE THAT CONTROLS WHAT IS ACTUALLY RUN)
-// ==================================================================
 
-// Starts the Game by running the startGame() function
-
-
-// Then initiates the function for capturing key clicks.
-document.onkeyup = function(event) {
-
-  // Runs the code to log selections.
-
-  /* ??? EDIT AND REPEAT FOR ALL FOUR IMAGES
-  
-  $(".shrink-button").on("click", function() {
-          captainPlanet.animate({ height: "100px" });
-        });
-
-*/
-
-  // Runs the code that ends each round.
-  
 
 
 });
